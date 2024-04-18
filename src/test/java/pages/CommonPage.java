@@ -20,4 +20,7 @@ public class CommonPage {
     @FindBy(xpath = "//button[text()='Log out']")
     public WebElement logOutConfirmationButton;
 
+    @FindBy(xpath = "//*[text()='Courses']")
+    public WebElement  coursesTab;
+
 }
