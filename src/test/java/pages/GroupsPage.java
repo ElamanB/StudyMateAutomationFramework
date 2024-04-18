@@ -33,8 +33,6 @@ public class GroupsPage {
     @FindBy(xpath = "//div[@class='css-1qf1rpk']/div")
     public List<WebElement> listOfGroups;
 
-    @FindBy(xpath = "//li[text()='Groups']")
-    public WebElement groupsTab;
 
     @FindBy(id = "modal")
     public WebElement popUpGroupWindow;

@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CommonPage;
@@ -34,7 +35,7 @@ public class GroupsPageTests {
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        Assertions.assertTrue(groupsPage.groupsTab.isDisplayed());
+        Assertions.assertTrue(commonPage.groupsTab.isDisplayed());
 
         groupsPage.createGroupButton.click();
 
@@ -74,10 +75,37 @@ public class GroupsPageTests {
 
     @Test
     @Order(2)
+    public void testCancelInCreateGroup() {
+
+        groupsPage.createGroupButton.click();
+
+        Assertions.assertTrue(groupsPage.popUpGroupWindow.isDisplayed());
+
+        groupsPage.groupNameInput.sendKeys("Group two!");
+        groupsPage.creationDateInput.sendKeys("12042024");
+        groupsPage.descriptionInput.sendKeys("Testing group creation!");
+
+        int numOfGroupsBefore = groupsPage.listOfGroups.size();
+
+        groupsPage.cancelButton.click();
+
+        int numOfGroupsAfter = groupsPage.listOfGroups.size();
+
+        Assertions.assertEquals(numOfGroupsBefore, numOfGroupsAfter);
+        Assertions.assertFalse(groupsPage.listOfGroups.get(0).getText().contains("Group two!"));
+
+        commonPage.administratorButton.click();
+        commonPage.logOutButton.click();
+        commonPage.logOutConfirmationButton.click();
+
+    }
+
+    @Test
+    @Order(3)
     public void testNS1CreateGroup() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        Assertions.assertTrue(groupsPage.groupsTab.isDisplayed());
+        Assertions.assertTrue(commonPage.groupsTab.isDisplayed());
 
         groupsPage.createGroupButton.click();
 
@@ -99,9 +127,12 @@ public class GroupsPageTests {
     }
 
 
+
+
+
+
     @AfterEach
     public void endPoint() {
-
         driver.manage().deleteAllCookies();
     }
 }
