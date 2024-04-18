@@ -3,7 +3,6 @@ package tests;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CommonPage;
 import pages.GroupsPage;
@@ -11,10 +10,9 @@ import pages.LoginPage;
 import utilities.Driver;
 
 import java.time.Duration;
-import java.util.function.Function;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class GroupsPageTest {
+public class GroupsPageTests {
 
     WebDriver driver;
     LoginPage loginPage = new LoginPage();
@@ -100,11 +98,6 @@ public class GroupsPageTest {
 
     }
 
-    @Test
-    @Order(3)
-    public void testCancelButton() {
-
-    }
 
     @AfterEach
     public void endPoint() {
