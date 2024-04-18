@@ -23,4 +23,7 @@ public class CommonPage {
     @FindBy(xpath = "//*[text()='Courses']")
     public WebElement  coursesTab;
 
+    @FindBy(xpath = "//li[text()='Groups']")
+    public WebElement groupsTab;
+
 }
