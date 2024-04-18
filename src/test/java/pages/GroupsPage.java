@@ -41,8 +41,7 @@ public class GroupsPage {
 
     @FindBy(xpath = "//div[text()='Group one!']")
     public WebElement newCreatedGroup;
-<<<<<<< HEAD
-=======
+
 
     @FindBy(xpath = "//p[text()='Group successfully saved']")
     public WebElement groupSuccessfullySavedAlert;
@@ -53,5 +52,5 @@ public class GroupsPage {
 
 
 
->>>>>>> a9d8744b3c2e15f4534f8775fe70aba73fa5df89
+
 }
