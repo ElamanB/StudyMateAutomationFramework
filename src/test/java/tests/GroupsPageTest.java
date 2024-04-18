@@ -98,7 +98,11 @@ public class GroupsPageTest {
         groupsPage.cancelButton.click();
 
 
+    }
 
+    @Test
+    @Order(3)
+    public void testCancelButton() {
 
     }
 
