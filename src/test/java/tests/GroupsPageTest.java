@@ -1,24 +1,26 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.CommonPage;
 import pages.GroupsPage;
 import pages.LoginPage;
 import utilities.Driver;
 
 import java.time.Duration;
+import java.util.function.Function;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GroupsPageTest {
 
     WebDriver driver;
     LoginPage loginPage = new LoginPage();
     GroupsPage groupsPage = new GroupsPage();
+    CommonPage commonPage = new CommonPage();
+    WebDriverWait wait;
 
     @BeforeEach
     public void startPoint() {
@@ -29,7 +31,10 @@ public class GroupsPageTest {
     }
 
     @Test
+    @Order(1)
     public void testSuccessfulCreateGroup() {
+
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         Assertions.assertTrue(groupsPage.groupsTab.isDisplayed());
 
@@ -45,7 +50,12 @@ public class GroupsPageTest {
 
         groupsPage.createButton.click();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(groupsPage.groupSuccessfullySavedAlert));
+
+        Assertions.assertTrue(groupsPage.groupSuccessfullySavedAlert.isDisplayed());
+        Assertions.assertTrue(groupsPage.groupSuccessfullySavedAlert.getText().contains("Group successfully saved"));
+
+
         wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath
                 ("//div[@class='css-1qf1rpk']/div"), numOfGroupsBefore + 1));
 
@@ -57,10 +67,17 @@ public class GroupsPageTest {
 
         Assertions.assertEquals(numOfGroupsBefore, numOfGroupsAfter - 1);
 
+        wait.until(ExpectedConditions.invisibilityOf(groupsPage.groupSuccessfullySavedAlert));
+        commonPage.administratorButton.click();
+        commonPage.logOutButton.click();
+        commonPage.logOutConfirmationButton.click();
+
     }
 
     @Test
+    @Order(2)
     public void testNS1CreateGroup() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         Assertions.assertTrue(groupsPage.groupsTab.isDisplayed());
 
@@ -72,8 +89,14 @@ public class GroupsPageTest {
         groupsPage.creationDateInput.sendKeys("12042024");
         groupsPage.descriptionInput.sendKeys("Testing group creation!");
 
-
         groupsPage.createButton.click();
+
+        wait.until(ExpectedConditions.visibilityOf(groupsPage.titleAlreadyExistsAlert));
+        Assertions.assertTrue(groupsPage.titleAlreadyExistsAlert.isDisplayed());
+
+
+        groupsPage.cancelButton.click();
+
 
 
 
@@ -81,6 +104,7 @@ public class GroupsPageTest {
 
     @AfterEach
     public void endPoint() {
+
         driver.manage().deleteAllCookies();
     }
 }

@@ -43,6 +43,11 @@ public class GroupsPage {
     @FindBy(xpath = "//div[text()='Group one!']")
     public WebElement newCreatedGroup;
 
+    @FindBy(xpath = "//p[text()='Group successfully saved']")
+    public WebElement groupSuccessfullySavedAlert;
+
+    @FindBy(xpath = "//p[text()='A group with the same title already exists']")
+    public WebElement titleAlreadyExistsAlert;
 
 
 
