@@ -59,6 +59,26 @@ public class GroupsPageTest {
 
     }
 
+    @Test
+    public void testNS1CreateGroup() {
+
+        Assertions.assertTrue(groupsPage.groupsTab.isDisplayed());
+
+        groupsPage.createGroupButton.click();
+
+        Assertions.assertTrue(groupsPage.popUpGroupWindow.isDisplayed());
+
+        groupsPage.groupNameInput.sendKeys("Group one!");
+        groupsPage.creationDateInput.sendKeys("12042024");
+        groupsPage.descriptionInput.sendKeys("Testing group creation!");
+
+
+        groupsPage.createButton.click();
+
+
+
+    }
+
     @AfterEach
     public void endPoint() {
         driver.manage().deleteAllCookies();
