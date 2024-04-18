@@ -12,7 +12,6 @@ public class GroupsPage {
     public GroupsPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
-
     @FindBy(xpath = "//h2/following-sibling::button")
     public WebElement createGroupButton;
 
@@ -42,9 +41,4 @@ public class GroupsPage {
 
     @FindBy(xpath = "//div[text()='Group one!']")
     public WebElement newCreatedGroup;
-
-
-
-
-
 }
