@@ -30,6 +30,9 @@ public class EditCoursePage {
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement saveButton;
 
+    @FindBy(xpath = "//button[@type='submit']")
+    public WebElement popUp;
+
 
 
 

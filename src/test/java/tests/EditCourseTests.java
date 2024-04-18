@@ -4,13 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.EditCoursePage;
 import pages.LoginPage;
 import utilities.Driver;
 
+import javax.swing.*;
 import java.time.Duration;
 
 public class EditCourseTests {
@@ -27,38 +30,28 @@ public class EditCourseTests {
     }
     @Test
     public void testSuccessfulCreateGroup() {
-
-        //Assertions.assertTrue(editCoursePage.isDisplayed());
-
         editCoursePage.courses.click();
         editCoursePage.edit.click();
         editCoursePage.edit1.click();
-        editCoursePage.editCourseName.sendKeys(" Edited course name");
-        editCoursePage.editDescription.sendKeys(" Edited course description");
+
+        Actions action = new Actions(driver);
+        action.keyDown(editCoursePage.editCourseName, Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL);
+        action.keyDown(editCoursePage.editCourseName,Keys.BACK_SPACE).keyUp(Keys.BACK_SPACE);
+        action.perform();
+        editCoursePage.editCourseName.sendKeys("Edited course name");
+
+        action.keyDown(editCoursePage.editDescription, Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL);
+        action.keyDown(editCoursePage.editDescription,Keys.BACK_SPACE).keyUp(Keys.BACK_SPACE);
+        action.perform();
+        editCoursePage.editDescription.sendKeys("Edited course description");
+
+        action.keyDown(editCoursePage.editDate, Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL);
+        action.keyDown(editCoursePage.editDate,Keys.BACK_SPACE).keyUp(Keys.BACK_SPACE);
+        action.perform();
         editCoursePage.editDate.sendKeys("12042024");
         editCoursePage.saveButton.click();
 
-       // Assertions.assertTrue(editCoursePage..isDisplayed());
 
-//        groupsPag.groupNameInput.sendKeys("Group one!");
-//        groupsPage.creationDateInput.sendKeys("12042024");
-//        groupsPage.descriptionInput.sendKeys("Testing group creation!");
-//
-//        int numOfGroupsBefore = groupsPage.listOfGroups.size();
-//
-//        groupsPage.createButton.click();
-//
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath
-//                ("//div[@class='css-1qf1rpk']/div"), numOfGroupsBefore + 1));
-//
-//        Assertions.assertTrue(groupsPage.newCreatedGroup.isDisplayed());
-//
-//        int numOfGroupsAfter = groupsPage.listOfGroups.size();
-//
-//        Assertions.assertTrue(groupsPage.listOfGroups.get(0).getText().contains("Group one!"));
-//
-//        Assertions.assertEquals(numOfGroupsBefore, numOfGroupsAfter - 1);
 
     }
 }

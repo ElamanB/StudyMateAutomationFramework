@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.util.List;
+
 public class DeleteCoursePages {
     public DeleteCoursePages() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -23,6 +25,12 @@ public class DeleteCoursePages {
 
     @FindBy(xpath = "//*[text()='Trash']")
     public WebElement trash;
+
+    @FindBy(xpath = "//tbody[@class='MuiTableBody-root css-1xnox0e']/tr")
+    public List<WebElement> listOfElements;
+    @FindBy(xpath = "//p[@class='sc-dkrFOg hbyUzQ']")
+    public WebElement popUpWindow;
+
 
 
 }
