@@ -35,12 +35,11 @@ public class CoursesTests {
 
         coursesPage.courses.click();
         coursesPage.createCourse.click();
-        coursesPage.courseName.sendKeys("JIRA PRACTICING 1 ");
+        coursesPage.courseName.sendKeys("JIRA PRACTICING 3 ");
         coursesPage.date.sendKeys("04.12.2024");
         coursesPage.description.sendKeys("This is Jira practicing of Group-1");
         coursesPage.create.click();
 
-        Assertions.assertTrue(coursesPage.courseSuccessfullySavedAlert.isDisplayed());
         wait.until(ExpectedConditions.visibilityOf(coursesPage.courseSuccessfullySavedAlert));
 
         Assertions.assertTrue(coursesPage.courseSuccessfullySavedAlert.getText().contains("The course successfully created"));
@@ -50,7 +49,7 @@ public class CoursesTests {
     public void negative(){
         coursesPage.courses.click();
         coursesPage.createCourse.click();
-        coursesPage.courseName.sendKeys("JIRA PRACTICING 1 ");
+        coursesPage.courseName.sendKeys("JIRA PRACTICING 3 ");
         coursesPage.date.sendKeys("05.12.2024");
         coursesPage.description.sendKeys("This is Jira practicing of Group-1");
         coursesPage.create.click();
