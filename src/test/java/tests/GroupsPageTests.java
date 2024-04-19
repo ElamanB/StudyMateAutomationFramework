@@ -18,16 +18,16 @@ import java.util.List;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GroupsPageTests {
 
-    WebDriver driver;
-    LoginPage loginPage = new LoginPage();
+    static WebDriver driver;
     GroupsPage groupsPage = new GroupsPage();
     CommonPage commonPage = new CommonPage();
     WebDriverWait wait;
 
-    @BeforeEach
-    public void startPoint() {
+    @BeforeAll
+    public static void startPoint() {
         driver = Driver.getDriver();
         driver.get("https://codewise.studymate.us/login");
+        LoginPage loginPage = new LoginPage();
         loginPage.logIn("Admin@codewise.com", "codewise123");
 
     }
@@ -70,9 +70,9 @@ public class GroupsPageTests {
         Assertions.assertEquals(numOfGroupsBefore, numOfGroupsAfter - 1);
 
         wait.until(ExpectedConditions.invisibilityOf(groupsPage.groupSuccessfullySavedAlert));
-        commonPage.administratorButton.click();
-        commonPage.logOutButton.click();
-        commonPage.logOutConfirmationButton.click();
+//        commonPage.administratorButton.click();
+//        commonPage.logOutButton.click();
+//        commonPage.logOutConfirmationButton.click();
 
     }
 
@@ -97,9 +97,10 @@ public class GroupsPageTests {
         Assertions.assertEquals(numOfGroupsBefore, numOfGroupsAfter);
         Assertions.assertFalse(groupsPage.listOfGroups.get(0).getText().contains("Group two!"));
 
-        commonPage.administratorButton.click();
-        commonPage.logOutButton.click();
-        commonPage.logOutConfirmationButton.click();
+
+//        commonPage.administratorButton.click();
+//        commonPage.logOutButton.click();
+//        commonPage.logOutConfirmationButton.click();
 
     }
 
@@ -125,6 +126,11 @@ public class GroupsPageTests {
 
 
         groupsPage.cancelButton.click();
+
+        wait.until(ExpectedConditions.invisibilityOf(groupsPage.titleAlreadyExistsAlert));
+//        commonPage.administratorButton.click();
+//        commonPage.logOutButton.click();
+//        commonPage.logOutConfirmationButton.click();
 
 
     }
@@ -166,7 +172,7 @@ public class GroupsPageTests {
         groupsPage.threeDots.click();
         groupsPage.deleteGroupButton1.click();
         groupsPage.deleteButton.click();
-        SeleniumUtils.waitForSeconds(2);
+        SeleniumUtils.waitForSeconds(1);
         Assertions.assertTrue(size==3);
 
     }
