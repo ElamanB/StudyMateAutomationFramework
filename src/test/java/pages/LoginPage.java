@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
+import utilities.SeleniumUtils;
 
 public class LoginPage {
 
@@ -17,7 +18,7 @@ public class LoginPage {
     @FindBy(name = "password")
     public WebElement passwordInput;
 
-    @FindBy(xpath = "//button[@type='button']//following-sibling::button")
+    @FindBy(xpath = "//button[text()='Log in']")
     public WebElement loginButton;
 
     @FindBy(id = "mui-component-select-language")
@@ -27,10 +28,14 @@ public class LoginPage {
     public WebElement englishLanguage;
 
     public void logIn(String email, String password) {
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
         languageDropdown.click();
         englishLanguage.click();
+
+        emailInput.sendKeys(email);
+        passwordInput.sendKeys(password);
+
+
+
         loginButton.click();
     }
 
