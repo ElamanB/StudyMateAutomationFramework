@@ -12,7 +12,7 @@ public class CoursesPage {
     public CoursesPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
-    @FindBy(name = "Courses")
+    @FindBy(xpath = "//*[text()='Courses']")
     public WebElement courses;
 
     //Syimyk's task delete courses
@@ -54,6 +54,29 @@ public class CoursesPage {
 
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement popUp;
+
+    @FindBy(xpath = "//button[text()='Create course']")
+    public WebElement createCourse;
+
+    @FindBy(name = "courseName")
+    public WebElement courseName;
+
+    @FindBy(xpath = "//*[@name='dateOfFinish']")
+    public WebElement date;
+
+    @FindBy(css = "textarea[name='description']")
+    public WebElement description;
+
+    @FindBy(xpath = "//button[text()='Create']")
+    public WebElement create;
+
+    @FindBy(xpath = "//div[@class='css-1qf1rpk']/div")
+    public List<WebElement> listOfCourses;
+
+    @FindBy(xpath = "//p[text()='The course successfully created']")
+    public WebElement courseSuccessfullySavedAlert;
+    @FindBy(xpath = "//p[text()='Course with the same title already exists']")
+    public WebElement courseAlreadyExistsAlert;
 
 
 
