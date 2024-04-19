@@ -174,8 +174,7 @@ public class GroupsPageTests {
         groupsPage.deleteButton.click();
         SeleniumUtils.waitForSeconds(1);
         Assertions.assertTrue(size==3);
-        System.out.println("Changes");
-        System.out.println("Something");
+
 
     }
 
