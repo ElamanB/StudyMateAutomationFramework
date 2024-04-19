@@ -176,7 +176,6 @@ public class GroupsPageTests {
         Assertions.assertTrue(size==3);
 
 
-
     }
 
 
