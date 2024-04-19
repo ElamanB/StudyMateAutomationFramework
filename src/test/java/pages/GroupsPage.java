@@ -47,6 +47,17 @@ public class GroupsPage {
     @FindBy(xpath = "//p[text()='A group with the same title already exists']")
     public WebElement titleAlreadyExistsAlert;
 
+    @FindBy(xpath = "(//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk'])[1]")
+    public WebElement threeDots;
+    @FindBy(xpath = "(//li[text()='Edit group'])[1]")
+    public WebElement editButton1;
+    @FindBy(xpath = "//button[text()='Save']")
+    public WebElement saveButton;
+    @FindBy(xpath = "(//li[text()='Delete group'])[1]")
+    public WebElement deleteGroupButton1;
+    @FindBy(xpath = "//button[text()='Delete']")
+    public WebElement deleteButton;
+
 
 
 

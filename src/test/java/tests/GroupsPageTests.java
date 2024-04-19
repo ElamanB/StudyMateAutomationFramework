@@ -1,5 +1,6 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -9,8 +10,10 @@ import pages.CommonPage;
 import pages.GroupsPage;
 import pages.LoginPage;
 import utilities.Driver;
+import utilities.SeleniumUtils;
 
 import java.time.Duration;
+import java.util.List;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GroupsPageTests {
@@ -123,6 +126,48 @@ public class GroupsPageTests {
 
         groupsPage.cancelButton.click();
 
+
+    }
+
+    @Test
+    @Order(4)
+    public void editGroupTest(){
+        List<WebElement> sideBar = driver.findElements(By.xpath("//div[@class='MuiListItemIcon-root css-1f8bwsm']"));
+        Assertions.assertEquals(sideBar.size(),7);
+        commonPage.groupsTab.click();
+        List<WebElement> groups = driver.findElements(By.xpath("//div[@class='MuiPopover-root " +
+                "MuiModal-root MuiModal-hidden css-jpt4u3']"));
+        int size = groups.size();
+        Assertions.assertTrue(size==4);
+        groupsPage.threeDots.click();
+        groupsPage.editButton1.click();
+        Actions actions = new Actions(driver);
+        actions.keyDown(groupsPage.groupNameInput, Keys.COMMAND).sendKeys("a");
+        actions.keyUp(groupsPage.groupNameInput, Keys.COMMAND);
+        actions.keyDown(groupsPage.groupNameInput, Keys.BACK_SPACE);
+        actions.keyUp(groupsPage.groupNameInput, Keys.BACK_SPACE);
+        actions.build().perform();
+        Faker faker = new Faker();
+        String text = faker.name().title();
+        groupsPage.groupNameInput.sendKeys(text);
+        groupsPage.saveButton.click();
+        WebElement confirmation = driver.findElement(By.xpath("//div[text()='"+text+"']"));
+        System.out.println(confirmation.getText());
+        Assertions.assertEquals(confirmation.getText(),text);
+    }
+    @Test
+    @Order(5)
+    public void deleteGroupTest(){
+        commonPage.groupsTab.click();
+        List<WebElement> groups = driver.findElements(By.xpath("//div[@class='MuiPopover-root " +
+                "MuiModal-root MuiModal-hidden css-jpt4u3']"));
+        int size = groups.size();
+        Assertions.assertTrue(size==4);
+        groupsPage.threeDots.click();
+        groupsPage.deleteGroupButton1.click();
+        groupsPage.deleteButton.click();
+        SeleniumUtils.waitForSeconds(2);
+        Assertions.assertTrue(size==3);
 
     }
 
