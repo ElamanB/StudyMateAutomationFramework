@@ -54,7 +54,6 @@ public class TeacherPageTest {
         String phoneNumber = a1+" "+a2+" "+a3;
         //    String phoneNumber = "+1 231 456 7841";
         teachersPage.editTeacherPhoneNumber.sendKeys(phoneNumber);
-        SeleniumUtils.waitForSeconds(5);
         teachersPage.saveButton.click();
         WebElement confirmation = driver.findElement(By.xpath("//td[text()='+1 "+phoneNumber+"']"));
         phoneNumber = "+1"+" "+phoneNumber;

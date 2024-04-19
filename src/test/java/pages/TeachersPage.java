@@ -46,7 +46,5 @@ public class TeachersPage {
     public WebElement threeDotsDeleteButton;
     @FindBy(xpath = "//button[text()='Delete']")
     public WebElement deleteButton;
-    @FindBy(xpath = "//li[text()='SDET - TEST 1']")
-    public WebElement courseName;
 
 }

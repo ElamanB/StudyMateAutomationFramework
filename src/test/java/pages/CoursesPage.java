@@ -15,7 +15,7 @@ public class CoursesPage {
     @FindBy(xpath = "//*[text()='Courses']")
     public WebElement courses;
 
-    //Syimyk's task1 delete courses
+    //Syimyk's task delete courses
     @FindBy(xpath = "//*[text()='Courses']")
     public WebElement courses1;
 
@@ -33,7 +33,7 @@ public class CoursesPage {
 
     @FindBy(xpath = "//tbody[@class='MuiTableBody-root css-1xnox0e']/tr")
     public List<WebElement> listOfElements;
-    @FindBy(xpath = "//p[text()='The course successfully deleted']")
+    @FindBy(xpath = "//p[@class='sc-dkrFOg hbyUzQ']")
     public WebElement popUpWindow;
 
     //Syimyk's task2 edit course
