@@ -40,7 +40,7 @@ public class CoursesPageTests {
         SeleniumUtils.waitForSeconds(5);
         boolean isElementFound = false;
         for (WebElement element : deleteCourseTests.listOfElements) {
-            if (element.getText().contains("dited course name")){
+            if (element.getText().contains("Edited course name")){
                 isElementFound = true;
                 System.out.println(isElementFound);
                 break;
