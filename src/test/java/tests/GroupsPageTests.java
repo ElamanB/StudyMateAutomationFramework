@@ -175,6 +175,7 @@ public class GroupsPageTests {
         SeleniumUtils.waitForSeconds(1);
         Assertions.assertTrue(size==3);
         System.out.println("Changes");
+        System.out.println("Something");
 
     }
 
