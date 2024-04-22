@@ -32,6 +32,11 @@ public class GroupsPageTests {
 
     }
 
+    /**
+     * This Java test method uses Selenium WebDriver to verify that a new group
+     * can be successfully created in a web application, checking UI elements' visibility,
+     * interacting with form fields, and confirming that the group count increases by one.
+     */
     @Test
     @Order(1)
     public void testSuccessfulCreateGroup() {
@@ -70,12 +75,14 @@ public class GroupsPageTests {
         Assertions.assertEquals(numOfGroupsBefore, numOfGroupsAfter - 1);
 
         wait.until(ExpectedConditions.invisibilityOf(groupsPage.groupSuccessfullySavedAlert));
-//        commonPage.administratorButton.click();
-//        commonPage.logOutButton.click();
-//        commonPage.logOutConfirmationButton.click();
 
     }
 
+    /**
+     * This Java test method, uses Selenium WebDriver to validate the functionality
+     * of cancelling a group creation in a web application. It initiates the creation process,
+     * inputs data into the group form, and then cancels it.
+     */
     @Test
     @Order(2)
     public void testCancelInCreateGroup() {
@@ -98,12 +105,13 @@ public class GroupsPageTests {
         Assertions.assertFalse(groupsPage.listOfGroups.get(0).getText().contains("Group two!"));
 
 
-//        commonPage.administratorButton.click();
-//        commonPage.logOutButton.click();
-//        commonPage.logOutConfirmationButton.click();
-
     }
 
+    /**
+     * This Java test method, uses Selenium WebDriver to ensure that an attempt
+     * to create a duplicate group ("Group one!") triggers an appropriate error alert
+     * about the existing title and then verifies that the process can be canceled cleanly.
+     */
     @Test
     @Order(3)
     public void testNS1CreateGroup() {
@@ -128,10 +136,7 @@ public class GroupsPageTests {
         groupsPage.cancelButton.click();
 
         wait.until(ExpectedConditions.invisibilityOf(groupsPage.titleAlreadyExistsAlert));
-//        commonPage.administratorButton.click();
-//        commonPage.logOutButton.click();
-//        commonPage.logOutConfirmationButton.click();
-
+        System.out.println("Hello");
 
     }
 
@@ -177,8 +182,6 @@ public class GroupsPageTests {
 
 
     }
-
-
 
 
 
