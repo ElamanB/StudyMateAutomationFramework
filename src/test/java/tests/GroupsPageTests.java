@@ -136,7 +136,7 @@ public class GroupsPageTests {
         groupsPage.cancelButton.click();
 
         wait.until(ExpectedConditions.invisibilityOf(groupsPage.titleAlreadyExistsAlert));
-        System.out.println("Hello");
+
 
     }
 
