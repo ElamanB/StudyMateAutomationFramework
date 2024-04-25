@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CommonPage;
 import pages.GroupsPage;
 import pages.LoginPage;
+import utilities.Config;
 import utilities.Driver;
 import utilities.SeleniumUtils;
 
@@ -26,9 +27,13 @@ public class GroupsPageTests {
     @BeforeAll
     public static void startPoint() {
         driver = Driver.getDriver();
-        driver.get("https://codewise.studymate.us/login");
+        driver.get(Config.getProperty("studyMateURL"));
         LoginPage loginPage = new LoginPage();
-        loginPage.logIn("Admin@codewise.com", "codewise123");
+        loginPage.languageDropdown.click();
+        loginPage.englishLanguage.click();
+        loginPage.emailInputField.sendKeys(Config.getProperty("studyMateEmail"));
+        loginPage.passwordInputField.sendKeys(Config.getProperty("studyMatePassword"));
+        loginPage.loginButton.click();
 
     }
 

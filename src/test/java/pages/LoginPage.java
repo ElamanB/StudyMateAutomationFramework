@@ -12,10 +12,10 @@ public class LoginPage {
     }
 
     @FindBy(name = "email")
-    public WebElement emailInput;
+    public WebElement emailInputField;
 
     @FindBy(name = "password")
-    public WebElement passwordInput;
+    public WebElement passwordInputField;
 
     @FindBy(xpath = "//button[@type='button']//following-sibling::button")
     public WebElement loginButton;
@@ -27,11 +27,12 @@ public class LoginPage {
     public WebElement englishLanguage;
 
     public void logIn(String email, String password) {
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
 
         languageDropdown.click();
         englishLanguage.click();
+
+        emailInputField.sendKeys(email);
+        passwordInputField.sendKeys(password);
 
         loginButton.click();
     }
