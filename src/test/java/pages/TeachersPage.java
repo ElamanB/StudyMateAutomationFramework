@@ -46,5 +46,7 @@ public class TeachersPage {
     public WebElement threeDotsDeleteButton;
     @FindBy(xpath = "//button[text()='Delete']")
     public WebElement deleteButton;
+    @FindBy(xpath = "//p[text()='User with the same email already exists']")
+    public WebElement warningText;
 
 }

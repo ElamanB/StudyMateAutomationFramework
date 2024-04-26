@@ -15,7 +15,7 @@ public class GroupsPage {
     @FindBy(xpath = "//h2/following-sibling::button")
     public WebElement createGroupButton;
 
-    @FindBy(name = "name")
+    @FindBy(css = "input[name='name']")
     public WebElement groupNameInput;
 
     @FindBy(name = "dateOfFinish")
@@ -57,6 +57,9 @@ public class GroupsPage {
     public WebElement deleteGroupButton1;
     @FindBy(xpath = "//button[text()='Delete']")
     public WebElement deleteButton;
+    @FindBy(xpath = "//p[text()='A group with the same title already exists']")
+    public WebElement warningText;
+
 
 
 

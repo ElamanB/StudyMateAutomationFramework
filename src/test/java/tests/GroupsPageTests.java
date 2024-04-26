@@ -184,8 +184,26 @@ public class GroupsPageTests {
         groupsPage.deleteButton.click();
         SeleniumUtils.waitForSeconds(1);
         Assertions.assertTrue(size==3);
-
-
+    }
+    @Test
+    public void editGroupNegative(){
+        List<WebElement> sideBar = driver.findElements(By.xpath("//div[@class='MuiListItemIcon-root css-1f8bwsm']"));
+        Assertions.assertEquals(sideBar.size(),7);
+        commonPage.groupsTab.click();
+        SeleniumUtils.waitForSeconds(5);
+        Assertions.assertEquals(driver.getCurrentUrl(),"https://codewise.studymate.us/admin/groups?size=6&page=1");
+        groupsPage.threeDots.click();
+        groupsPage.editButton1.click();
+        SeleniumUtils.waitForSeconds(5);
+        Actions actions = new Actions(driver);
+        actions.keyDown(groupsPage.groupNameInput, Keys.COMMAND).sendKeys("a");
+        actions.keyUp(groupsPage.groupNameInput, Keys.COMMAND);
+        actions.keyDown(groupsPage.groupNameInput, Keys.BACK_SPACE);
+        actions.keyUp(groupsPage.groupNameInput, Keys.BACK_SPACE);
+        actions.build().perform();
+        groupsPage.groupNameInput.sendKeys("Group4");
+        groupsPage.saveButton.click();
+        Assertions.assertTrue(groupsPage.warningText.isDisplayed());
     }
 
 

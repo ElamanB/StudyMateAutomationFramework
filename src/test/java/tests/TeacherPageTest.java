@@ -4,10 +4,7 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import pages.LoginPage;
 import pages.TeachersPage;
@@ -72,6 +69,31 @@ public class TeacherPageTest {
         teachersPage.threeDotsDeleteButton.click();
         teachersPage.deleteButton.click();
 
+    }
+    @Test
+    public void editTeacherNegative(){
+        SeleniumUtils.waitForSeconds(5);
+        List<WebElement> sideBar = driver.findElements(By.xpath("//div[@class='MuiListItemIcon-root css-1f8bwsm']"));
+        Assertions.assertEquals(sideBar.size(),7);
+        teachersPage.teachersTab.click();
+        SeleniumUtils.waitForSeconds(5);
+        List<WebElement> teachers = driver.findElements(By.xpath("//tr[@class='MuiTableRow-root css-1ipg9de']"));
+        Assertions.assertEquals(teachers.size(),10);
+        teachersPage.threeDots.click();
+        teachersPage.editButton.click();
+        teachersPage.editTeacherPhoneNumber.click();
+        teachersPage.editTeacherPhoneNumber.sendKeys("142 566 7733");
+        Actions actions = new Actions(driver);
+        actions.keyDown(teachersPage.editTeacherEmail, Keys.COMMAND).sendKeys("a");
+        actions.keyUp(teachersPage.editTeacherEmail, Keys.COMMAND);
+        actions.keyDown(teachersPage.editTeacherEmail, Keys.BACK_SPACE);
+        actions.keyUp(teachersPage.editTeacherEmail, Keys.BACK_SPACE);
+        actions.build().perform();
+        teachersPage.editTeacherEmail.sendKeys("ayasue5a@gmail.com");
+        teachersPage.saveButton.click();
+        Assertions.assertTrue(teachersPage.warningText.isDisplayed());
+
 
     }
+
 }

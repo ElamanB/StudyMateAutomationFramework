@@ -2,7 +2,7 @@
 <suite name="Edit Test">
     <test name="Groups Page">
         <classes>
-            <class name="tests.EditCourseTests"></class>
+            <class name="tests.GroupsPageTests"></class>
 <!--            <class name="tests.TestNGIntroTests">-->
 <!--            </class>-->
         </classes>
